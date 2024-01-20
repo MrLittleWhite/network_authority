@@ -34,7 +34,7 @@ public class NetworkAuthorityPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
                 LLNetworkAccessibility.stop()
                 result(nil)
             case "getStatus":
-                result(LLNetworkAccessibility.getCurrentAuthState())
+            result(LLNetworkAccessibility.getCurrentAuthState().rawValue)
                 result(nil)
             default:
                 result(FlutterMethodNotImplemented)

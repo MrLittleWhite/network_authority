@@ -1,6 +1,6 @@
 name: network_authority
 description: "Flutter iOS plugin for LLNetworkAccessibility."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/MrLittleWhite/network_authority
 
 environment:

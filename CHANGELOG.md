@@ -1,3 +1,3 @@
-## 0.0.2
+## 0.0.3
 
-* amend README.md file
+* fix: get current authority error
