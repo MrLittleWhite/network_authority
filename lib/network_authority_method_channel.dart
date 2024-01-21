@@ -34,7 +34,9 @@ class MethodChannelNetworkAuthority extends NetworkAuthorityPlatform {
 
   @override
   Future<NetworkAuthorityStatus> getStatus() {
-    return methodChannel.invokeMethod<NetworkAuthorityStatus>('getStatus').then((value) => value ?? NetworkAuthorityStatus.unknown);
+    return methodChannel.invokeMethod<int>('getStatus').then(
+      (value) => value != null ? NetworkAuthorityStatus.values[value] : NetworkAuthorityStatus.unknown
+    );
   }
 
   @override
