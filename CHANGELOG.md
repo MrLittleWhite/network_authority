@@ -1,3 +1,3 @@
-## 0.0.3
+## 0.0.4
 
-* fix: get current authority error
+* fix: get authority type
