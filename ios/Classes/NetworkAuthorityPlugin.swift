@@ -35,18 +35,7 @@ public class NetworkAuthorityPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
                 result(nil)
             case "getStatus":
                 let state = LLNetworkAccessibility.getCurrentAuthState()
-                var value = 0
-                switch state {
-                case .checking:
-                    value = 0
-                case .unknown:
-                    value = 1
-                case .available:
-                    value = 2
-                case .restricted:
-                    value = 3
-                }
-                result(value)
+                result(state.rawInt)
             default:
                 result(FlutterMethodNotImplemented)
         }
@@ -57,7 +46,7 @@ public class NetworkAuthorityPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
         LLNetworkAccessibility.start()
         LLNetworkAccessibility.configAlertStyle(type: .none)
         LLNetworkAccessibility.reachabilityUpdateCallBack = { [weak self] status in
-            guard let self = self, let value = status?.rawValue else { return }
+            guard let self = self, let value = status?.rawInt else { return }
             self.eventSink?(value);
         }
     }
@@ -73,5 +62,21 @@ public class NetworkAuthorityPlugin: NSObject, FlutterPlugin, FlutterStreamHandl
         eventSink = nil
         return nil
     }
+}
 
+extension LLNetworkAccessibility.AuthState {
+    var rawInt: Int {
+        var value = 0
+        switch self {
+        case .checking:
+            value = 0
+        case .unknown:
+            value = 1
+        case .available:
+            value = 2
+        case .restricted:
+            value = 3
+        }
+        return value
+    }
 }
